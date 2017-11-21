@@ -18,23 +18,39 @@ g->J;<br>
 **比如**：凯撒密码的秘钥其实就都是字母平移的位数，字母表只有26个字母，那么秘钥也就只有0-25共26个秘钥（平移0个字母相当于没有加密）。暴力破解就是按照顺序把26个秘钥都试一遍，当然这些我们可以借助工具来完成。<br>
 **加密代码**
 ```C
-#include <stdio.h>
-#include <conio.h>
- int main(){
- int key;
- char mingma,mima;
- printf("\nPlease input the character:");
- scanf("%c",&mingma); //输入明码
- printf("\nPlease input the key:");
- scanf("%d",&key); //输入秘钥
- if((mingma>='A')&&(mingma<='Z'))
-  mima='A'+(mingma-'A'+key)%26; //大写字母移位
- else if((mingma>='a')&&(mingma<='z'))
-  mima='a'+(mingma-'a'+key)%26; //小写字母移位
- printf("\n The output is:%c",mima); //输出密码
- printf("\nFinished!\n");
- getch();
- return 0;
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char passwd[100],encrypted[100];
+    int i;
+    int k;
+    int t;
+    int move;
+    while(1)
+    {
+        printf("Enter message to be encrypted:");
+        gets(passwd);
+        printf("Enter shift amount(1-25):");
+        scanf("%d%*c",&move);
+        for(i=0; i<strlen(passwd);i++)
+        {
+            if(passwd[i] >= 'A' && passwd[i] <= 'Z')
+            {
+                passwd[i] = ((passwd[i]-'A')+move)%26+'A';
+            }
+            else if(passwd[i] >= 'a' && passwd[i] <= 'z')
+            {
+                passwd[i] = ((passwd[i]-'a')+move)%26+'a';
+            }
+        }
+        printf("%s",passwd);
+        printf("\n");
+        break;
+
+    }
+    return 0;
 }
 ```
 ## 置换密码
