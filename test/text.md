@@ -32,7 +32,7 @@ int main()
     {
         printf("Enter message to be encrypted:");
         gets(passwd);
-        printf("Enter shift amount(1-25):");
+        printf("Enter shift amount(0-25):");
         scanf("%d%*c",&move);
         for(i=0; i<strlen(passwd);i++)
         {
